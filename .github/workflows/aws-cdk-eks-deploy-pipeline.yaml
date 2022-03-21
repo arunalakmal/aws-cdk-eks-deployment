@@ -18,3 +18,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Installing Tools...
         run: source ./scripts/install-tools.sh
+      - name: Deploying Cluster
+        run: source ./scripts/cluster-deploy.sh
+      - name: Testing Cluster
+        run: python3 -m pytest
