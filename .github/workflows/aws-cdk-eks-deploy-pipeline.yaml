@@ -1,0 +1,20 @@
+name: CDK-EKS-Cluster-Deployment
+on: 
+  push:
+    branches:
+      - "master"
+  pull_request:
+defaults:
+  run:
+    shell: bash
+jobs:
+  cluster_deploy:
+    runs-on: ubuntu-latest
+    env: 
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Installing Tools...
+        run: source ./scripts/install-tools.sh
